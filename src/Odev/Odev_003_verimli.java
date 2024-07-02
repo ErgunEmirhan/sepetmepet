@@ -5,11 +5,11 @@ public class Odev_003_verimli {
         long start = System.nanoTime();
 
         int num = 4411117;
-        int numSqrt = (int)Math.ceil(Math.sqrt(num));
+        int halfNum = (int)(Math.ceil(num/2.0));
 
         boolean isPrime = true;
 
-        for(int i=3;i<numSqrt;i+=2){
+        for(int i=3;i<halfNum;i+=2){
             if(num%2==0){
                 isPrime = false;
                 break;
