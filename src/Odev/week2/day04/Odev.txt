@@ -1,0 +1,13 @@
+Hafta 2 Öğrendidklerim :
+- Final keywordu yardımı ile sabit değişkenler tanımlayabiliyoruz. Final ile değişken tanımlarken değişkeni büyük harflerle
+yazmak genel pratik için iyidir.
+- i++; ve ++i; tarzı arttırma işlemlerinin farklarını öğrendim.
+- CTRL + ALT + L -> IDE'de kodları hizaya getirmeye yarıyor.
+- ternary operator : if else komutunun tek satırlık yazılabilen hali.
+- String object komutları
+- switch() metodunu çoklu if durumları yerine kullanmak.
+- JAVA12 ile gelen yeni switch özellikleri.
+- BigDecimal : Ondalık işlemleri sıfır hata ile yapmak için kullanılan sınıf.
+- BigInteger : int veya long ile tanımlayamayacağımız kadar büyük sayılarda işlem yapmamızı sağlayan sınıf.
+- Kullanıcı ara yüz programı yazma.
+- try/catch metodu ile hata alındığında otomatik hata mesajından başka konsola istedimiz şekilde çıktıyı ayarlayabilme.
