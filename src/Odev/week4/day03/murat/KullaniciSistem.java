@@ -260,7 +260,5 @@ public class KullaniciSistem {
         return true;
     }
 
-    public Kullanici[] getUsers() {
-        return users;
-    }
+
 }
