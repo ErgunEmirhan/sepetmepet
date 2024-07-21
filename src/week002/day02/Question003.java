@@ -1,11 +1,11 @@
-package week002;
+package week002.day02;
 
 import java.util.Scanner;
 
 public class Question003 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int num = 1;
+        int num;
         int sum = 0;
         double count = 0;
         double average = 0;

@@ -9,10 +9,6 @@ public class KullaniciDB {
 
     public static Kullanici[] kullanicilar = new Kullanici[50];
 
-    private String gizliSoru;
-    private String gizliCevap;
-
-
     public static void save(Kullanici kullanici) {
         kullanicilar[index] = kullanici;
         index++;

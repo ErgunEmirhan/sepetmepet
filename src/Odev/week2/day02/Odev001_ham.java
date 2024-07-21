@@ -1,22 +1,17 @@
-package Odev;
+package Odev.week2.day02;
 
-public class Odev_003_verimli {
+public class Odev001_ham {
     public static void main(String[] args) {
+
         long start = System.nanoTime();
 
-        int num = 4411117;
+        int num = 2147483647;
 
         boolean isPrime = true;
 
-        for(int i=3;(i*i)<num;i+=2){
-            if(num%2==0){
-                isPrime = false;
-                break;
-            }
-
+        for(int i=2;i<num;i++){
             if(num%i==0){
                 isPrime=false;
-                break;
 
             }
         }
@@ -26,8 +21,11 @@ public class Odev_003_verimli {
             System.out.println(num+" is NOT a prime number.");
         }
 
-        long duration = (System.nanoTime()-start);
-        System.out.printf("Duration = %,d nano-seconds",duration);
+        long duration = (System.nanoTime()-start)/1000000;
+        System.out.printf("Duration = %,d mili-seconds",duration);
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-package week002;
+package week002.day02;
 
 import java.util.Scanner;
 
@@ -9,9 +9,9 @@ public class Question004 {
         int num = sc.nextInt();
         int result;
 
-        for(int i =0;i<=9;i++ ){
+        for(int i =0;i<=10;i++ ){
             result = num*i;
-            System.out.println(num+" * "+i+" = "+result);
+            System.out.println(num+" x "+i+"\t = "+result);
         }
         sc.close();
 

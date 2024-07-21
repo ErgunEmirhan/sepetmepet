@@ -1,11 +1,11 @@
-package week002;
+package week002.day02;
 
 public class Question005 {
     public static void main(String[] args) {
         double sumEven = 0;
         double sumOdd = 0;
 
-        for(int i =2;i< 100;i+=2){
+        for(int i =2;i<= 100;i+=2){
             sumEven +=i;
         }
         for(int i=1;i<100;i+=2){

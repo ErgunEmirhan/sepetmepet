@@ -1,4 +1,4 @@
-package Odev;
+package Odev.week2.day02;
 
 public class Odev002_orta {
 
@@ -6,17 +6,17 @@ public class Odev002_orta {
 
         long start = System.nanoTime();
 
-        int num = 4411117;
+        long num = 555555571159L;
 
         boolean isPrime = true;
 
-        for(int i=3;i<num/2;i+=2){
+        for(long i=3;i<num;i+=2){
             if(num%2==0){
                 isPrime = false;
                 break;
             }
 
-            if(num%i==0){
+            else if(num%i==0){
                 isPrime=false;
 
             }
@@ -27,8 +27,8 @@ public class Odev002_orta {
             System.out.println(num+" is NOT a prime number.");
         }
 
-        long duration = (System.nanoTime()-start);
-        System.out.printf("Duration = %,d nano-seconds",duration);
+        long duration = (System.nanoTime()-start)/1000000;
+        System.out.printf("Duration = %,d mili-seconds",duration);
 
 
 

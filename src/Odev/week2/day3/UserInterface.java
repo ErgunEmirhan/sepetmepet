@@ -6,11 +6,11 @@ public class UserInterface {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Hoşgeldiniz! / Welcome!");
-        int lang = 0;
+        int lang = -1;
 
         while (lang != 1 && lang != 2) {
             System.out.println("Lutfen goruntuleme dilini seciniz. / Please select display language.");
-            System.out.println("1-- Türkçe (TR)\n2-- English (EN)");
+            System.out.println("1-- Türkçe\t (TR)\n2-- English\t (EN)");
             lang = sc.nextInt();
         }
 
@@ -70,7 +70,7 @@ public class UserInterface {
 
             } while (choice != 0);
 
-        } else if (lang == 2) {
+        } else {
             int choice;
             do {
                 System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -");

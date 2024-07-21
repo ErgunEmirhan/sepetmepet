@@ -1,4 +1,6 @@
-package week002;
+package week002.day02;
+
+//a'dan z'ye alfabeyi yazdıralım
 
 public class Question002 {
     public static void main(String[] args) {
