@@ -70,7 +70,7 @@ public class KullaniciSistem {
             KullaniciDB.save(users[kullaniciIndex]);
             kullaniciIndex++;
             System.out.println("Üye kaydı başarıyla oluşturulmuştur.");
-            System.out.println(users[kullaniciIndex - 1]);
+//            System.out.println(users[kullaniciIndex - 1]);
         }
 
     }
