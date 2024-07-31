@@ -1,25 +1,57 @@
 package AlperenHoca.GrupProjeUygulama01.Repositories;
 
-import AlperenHoca.GrupProjeUygulama01.Repositories.entities.Kiyafet;
-import AlperenHoca.GrupProjeUygulama01.Repositories.entities.Sepet;
+import AlperenHoca.GrupProjeUygulama01.Repositories.entities.*;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class UrunSecimSistemi {
-        Scanner sc = new Scanner(System.in);
-        Sepet sepet = new Sepet();
+    static Scanner sc = new Scanner(System.in);
+    static DatabaseManager<Kiyafet> db = new DatabaseManager();
+
+    public static void main(String[] args) {
+
+       demoVeriOlustur();
+       welcomeMenu();
+
+
+
+    }
+
+    public static void demoVeriOlustur(){
+        ArrayList<Kiyafet> kiyafetList = db.urunList;
+        for(int i =0;i<50;i++){
+            Random random = new Random();
+            ERenk[] renkArr = ERenk.values();
+            ESize[] sizeArr = ESize.values();
+            EGender[] genderArr = EGender.values();
+            ETur[] turArr = ETur.values();
+
+            Kiyafet kiyafet = new Kiyafet("kiyafet", random.nextDouble(400,1000));
+            kiyafet.setRenk(renkArr[random.nextInt(3)]);
+            kiyafet.setSize(sizeArr[random.nextInt(3)]);
+            kiyafet.setGender(genderArr[random.nextInt(3)]);
+            kiyafet.setTur(turArr[random.nextInt(4)]);
+            kiyafet.setAdet(random.nextInt(1,21));
+            db.save(kiyafet);
+
+        }
+        System.out.println(kiyafetList);
+
+    }
 
 
 
 
 
-    public void welcomeMenu() {
+
+    public static void welcomeMenu() {
         while (true) {
-        System.out.println("Sepete eklemek istediğiniz ürünü seçiniz");
-        System.out.println("1- " + tShirt.getUrunAd());
-        System.out.println("2- " + kazak.getUrunAd());
-        System.out.println("3- " + pantolon.getUrunAd());
-        System.out.println("4- " + kemer.getUrunAd());
+            System.out.println("1- Ürün listele");
+            System.out.println("2- Sepete ürün ekle");
+            System.out.println("3- Sepeti görüntüle");
+            System.out.println("0- Çıkış yap");
+
+
         System.out.print("Seciminiz: ");
         int secim = sc.nextInt();
         sc.nextLine();
@@ -30,14 +62,14 @@ public class UrunSecimSistemi {
                     sc.close();
                     return;
                 case 1:{
-                    Kiyafet tShirt = new Kiyafet("tShirt",350.0);
-                    sizeSec(tShirt);
+                   db.getAll();
+
                 }
             }
         }
     }
 
-    public void sizeSec(Kiyafet kiyafet) {
+    public static void sizeSec(Kiyafet kiyafet) {
         while (true) {
             System.out.println("Urun icin size seciniz");
             System.out.println("1- Small");
@@ -46,20 +78,7 @@ public class UrunSecimSistemi {
             System.out.print("Seciminiz: ");
             int secim = sc.nextInt();
             sc.nextLine();
-            switch (secim) {
-                case 1:
-                    kiyafet.setSize("Small");
-                    return;
-                case 2:
-                    kiyafet.setSize("Medium");
-                    return;
-                case 3:
-                    kiyafet.setSize("Large");
-                    return;
-                default:
-                    System.out.println("Lütfen geçerli bir seçim yapınız.");
-                    break;
-            }
+
         }
 
     }

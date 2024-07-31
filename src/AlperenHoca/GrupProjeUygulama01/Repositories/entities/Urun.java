@@ -5,12 +5,22 @@ public class Urun {
     private Integer id;
     private String urunAd;
     private Double fiyat;
+    private Integer adet=0;
+    private String aciklama;
 
 
     public Urun(String urunAd, Double fiyat) {
         this.urunAd = urunAd;
         this.fiyat = fiyat;
         this.id = ++idCount;
+    }
+
+    public Integer getAdet() {
+        return adet;
+    }
+
+    public void setAdet(Integer adet) {
+        this.adet = adet;
     }
 
     public Integer getId() {
@@ -46,4 +56,6 @@ public class Urun {
                 ", fiyat=" + getFiyat() +
                 '}';
     }
+    //tostring -> id, ürün adı, fiyat göstersin
+    // ürünü seçtikten sonra detaylı toString göster. iki toString yazacaksın.
 }
