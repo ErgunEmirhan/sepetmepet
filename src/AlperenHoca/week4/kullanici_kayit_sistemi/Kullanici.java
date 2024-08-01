@@ -1,6 +1,7 @@
 package AlperenHoca.week4.kullanici_kayit_sistemi;
 import AlperenHoca.GrupProjeUygulama01.Repositories.DatabaseManager;
 import AlperenHoca.GrupProjeUygulama01.Repositories.entities.Sepet;
+import AlperenHoca.GrupProjeUygulama01.Repositories.entities.Urun;
 
 import javax.xml.crypto.Data;
 import java.time.LocalDate;
@@ -19,11 +20,24 @@ public class Kullanici {
     private String tcKimlik;
     private LocalDate kayitTarihi;
     private LocalDate dogumTarihi;
-    private Sepet sepet;
+    private Sepet guncelSepet;
     private ArrayList<Sepet> satinAlimGecmisi;
+    private ArrayList<Urun> favoriList;
+    
+    public ArrayList<Urun> getFavoriList() {
+        return favoriList;
+    }
     
     public ArrayList<Sepet> getSatinAlimGecmisi() {
         return satinAlimGecmisi;
+    }
+    
+    public Sepet getGuncelSepet() {
+        return guncelSepet;
+    }
+    
+    public void setGuncelSepet(Sepet guncelSepet) {
+        this.guncelSepet = guncelSepet;
     }
     
     public void setSatinAlimGecmisi(ArrayList<Sepet> satinAlimGecmisi) {
@@ -35,6 +49,8 @@ public class Kullanici {
         this.id = kullaniciCount;
         this.kayitTarihi = LocalDate.now();
         this.satinAlimGecmisi = new ArrayList<Sepet>();
+        this.guncelSepet = new Sepet();
+        this.favoriList = new ArrayList<>();
     }
 
     public void setIsim(String isim) {

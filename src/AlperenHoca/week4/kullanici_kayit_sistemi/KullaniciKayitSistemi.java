@@ -24,6 +24,7 @@ public class KullaniciKayitSistemi {
             System.out.println("1- Kayit Ol");
             System.out.println("2- Giris Yap");
             System.out.println("3- Sifremi Unuttum");
+            System.out.println("4- Magazaya anonim gir");
             System.out.println("8- Demo veri olustur");
             System.out.println("9- Kullanicilari Goruntule");
             System.out.println("0- Cikis");
@@ -56,6 +57,9 @@ public class KullaniciKayitSistemi {
                 sifremiUnuttum();
                 break;
             }
+            case 4: {
+                magazayaAnonimGir();
+            }
             case 8: {
                 generateData();
                 break;
@@ -70,7 +74,11 @@ public class KullaniciKayitSistemi {
             }
         }
     }
-
+    
+    private static void magazayaAnonimGir() {
+        UrunSecimSistemi.welcomeMenu(null);
+    }
+    
     private static void kullaniciArayuzu(Kullanici kullanici) {
         int secim = -1;
         do {
@@ -132,7 +140,7 @@ public class KullaniciKayitSistemi {
         return secim;
     }
     
-    private static void siparisGecmisimiGoruntule(Kullanici kullanici) {
+    public static void siparisGecmisimiGoruntule(Kullanici kullanici) {
         for (Sepet sepet:kullanici.getSatinAlimGecmisi()){
             UrunSecimSistemi.sepetiGoruntule(sepet);
             System.out.println("-----------");
@@ -210,7 +218,7 @@ public class KullaniciKayitSistemi {
         }
     }
 
-    private static Kullanici girisYap() {
+    public static Kullanici girisYap() {
         System.out.print("Lutfen kullanici adinizi giriniz : ");
         String username = scanner.nextLine();
         System.out.print("Lutfen sifrenizi giriniz : ");
