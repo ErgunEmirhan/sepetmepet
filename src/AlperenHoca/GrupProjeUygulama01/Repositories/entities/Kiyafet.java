@@ -61,18 +61,10 @@ public class Kiyafet extends Urun{
                 +
                 '}';
     }
-
-
-    public String toStringDetailed() {
-        return "Kiyafet{" +
-                "id=" + getId() +
-                ", urunAd='" + getUrunAd() + '\'' +
-                ", fiyat=" + getFiyat() +
-                ", adet=" + getAdet() +
-                ", tur=" + getTur() +
-                ", renk=" + getRenk() +
-                ", size=" + getSize() +
-                ", gender=" + getGender() +
-                '}';
+    
+    
+    @Override
+    public String detayliGoruntule() {
+        return super.detayliGoruntule() + "Kiyafet{" + "gender=" + getGender() + ", renk=" + getRenk() + ", size=" + getSize() + ", tur=" + getTur() + '}';
     }
 }

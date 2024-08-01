@@ -1,8 +1,12 @@
 package AlperenHoca.week4.kullanici_kayit_sistemi;
 
+import AlperenHoca.GrupProjeUygulama01.Repositories.UrunSecimSistemi;
+import AlperenHoca.GrupProjeUygulama01.Repositories.entities.Sepet;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class KullaniciKayitSistemi {
 
@@ -13,6 +17,7 @@ public class KullaniciKayitSistemi {
     }
 
     public static void menu() {
+        UrunSecimSistemi.demoVeriOlustur();
         int secim = -1;
         do {
             System.out.println("### KULLANICI KAYIT SISTEMI ###");
@@ -71,6 +76,8 @@ public class KullaniciKayitSistemi {
         do {
             System.out.println("### KULLANICI ARAYUZU ###");
             System.out.println("1- Bilgilerimi Goruntule");
+            System.out.println("2- Magazaya git");
+            System.out.println("3- Siparis gecmisimi goruntule");
             System.out.println("7- TelNo Degistir");
             System.out.println("8- Email Degistir");
             System.out.println("9- Sifre Degistir");
@@ -92,6 +99,14 @@ public class KullaniciKayitSistemi {
         switch (secim) {
             case 1: {
                 kullaniciyiGoruntule(kullanici.getId());
+                break;
+            }
+            case 2: {
+                UrunSecimSistemi.welcomeMenu(kullanici);
+                break;
+            }
+            case 3: {
+                siparisGecmisimiGoruntule(kullanici);
                 break;
             }
             case 7: {
@@ -116,7 +131,14 @@ public class KullaniciKayitSistemi {
         }
         return secim;
     }
-
+    
+    private static void siparisGecmisimiGoruntule(Kullanici kullanici) {
+        for (Sepet sepet:kullanici.getSatinAlimGecmisi()){
+            UrunSecimSistemi.sepetiGoruntule(sepet);
+            System.out.println("-----------");
+        }
+    }
+    
     private static void telNoDegistir(Kullanici kullanici) {
         //TODO Potansiyel iptal islemleri icin case yapisi kurulabilir.
         System.out.println("### Telefon Numarasi Degistirme ###");

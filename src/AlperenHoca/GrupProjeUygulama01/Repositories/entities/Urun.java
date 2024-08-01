@@ -18,6 +18,8 @@ public class Urun {
     public Urun(Urun urun, int adet) {
         this(urun.getUrunAd(), urun.getFiyat());
         this.adet=adet;
+        this.id = urun.getId();
+        --idCount;
 
 
     }
@@ -63,6 +65,11 @@ public class Urun {
                 ", fiyat=" + getFiyat() +
                 '}';
     }
+    
+    public String detayliGoruntule() {
+        return "Urun{" + "aciklama='" + aciklama + '\'' + ", id=" + getId() + ", urunAd='" + getUrunAd() + '\'' + ", fiyat=" + getFiyat() + ", adet=" + getAdet() + '}';
+    }
+    
     //tostring -> id, ürün adı, fiyat göstersin
     // ürünü seçtikten sonra detaylı toString göster. iki toString yazacaksın.
 }
