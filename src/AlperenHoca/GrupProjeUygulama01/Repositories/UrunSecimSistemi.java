@@ -66,6 +66,7 @@ public class UrunSecimSistemi {
                                        6- Sepetten urun azalt.
                                        7- Sepeti bosalt.
                                        8- Siparis gecmisimi goruntule
+                                       9- Bakiye ekle
                                        0- Cikis yap
                                        """);
                                
