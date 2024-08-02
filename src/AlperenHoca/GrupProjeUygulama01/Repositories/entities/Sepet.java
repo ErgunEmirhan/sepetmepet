@@ -16,7 +16,7 @@ public class Sepet {
     }
     
     public Sepet(){
-        urunArrayList = new ArrayList<>();
+        urunArrayList = new ArrayList<>(){};
         uuid = UUID.randomUUID().toString();
     }
 

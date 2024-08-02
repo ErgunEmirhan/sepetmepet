@@ -23,7 +23,7 @@ public class UrunSecimSistemi {
     public static void demoVeriOlustur(){
         ArrayList<Kiyafet> kiyafetList = db.urunList;
         String[] adlar = {"tisort", "pantolon", "ayakkabi"};
-        DecimalFormat df = new DecimalFormat("#,00");
+        DecimalFormat df = new DecimalFormat("#,##");
         for (int j = 0; j < adlar.length; j++) {
             for (int i = 0; i < 5; i++) {
                 Random random = new Random();
@@ -41,7 +41,7 @@ public class UrunSecimSistemi {
                 kiyafet.setTur(turArr[random.nextInt(ETur.values().length)]);
                 Integer adet = random.nextInt(1, 21);
                 kiyafet.setAdet(adet);
-                kiyafet.setSepetLimiti(adet*3/4);
+                kiyafet.setSepetLimiti((int)Math.ceil(adet*3/4.));
                 db.save(kiyafet);
             }
         }
@@ -65,6 +65,7 @@ public class UrunSecimSistemi {
                                        5- Sepetimden urun cikar.
                                        6- Sepetten urun azalt.
                                        7- Sepeti bosalt.
+                                       8- Siparis gecmisimi goruntule
                                        0- Cikis yap
                                        """);
                                
@@ -96,7 +97,7 @@ public class UrunSecimSistemi {
                 }
                 case 4: {
                     kullanici = alisverisiTamamla(kullanici, sepet);
-                    sepet = new Sepet();
+                    if (kullanici != null) sepet = kullanici.getGuncelSepet();
                     break;
                 }
                 case 5: {
@@ -114,9 +115,18 @@ public class UrunSecimSistemi {
                     break;
                 }
                 case 8:{
+                    if (kullanici == null) {
+                        System.out.println("Bir hesaba giris yapmadiginiz icin siparis gecmisinizi goruntulemiyoruz.." +
+                                                   ".");
+                        break;
+                    }
                     KullaniciKayitSistemi.siparisGecmisimiGoruntule(kullanici);
                     break;
                 }
+                case 9:
+                    if (kullanici != null) KullaniciKayitSistemi.bakiyeOlustur(kullanici);
+                    else System.out.println("ilk once giris yapmalisiniz");
+                    break;
             }
         }
     }
@@ -159,23 +169,68 @@ public class UrunSecimSistemi {
     }
     
     private static Kullanici alisverisiTamamla(Kullanici kullanici, Sepet sepet) {
-        int i = 0;
         while (kullanici == null){
-            System.out.println("Alisverisi tamamlamak icin hesabiniza giris yapmaniz gerekiyor");
-            kullanici = KullaniciKayitSistemi.girisYap();
-            i++;
-            if (i > 3) {
-                System.out.println("Giris denemeleri basarisiz oldu");
-                return null;
+            System.out.println("""
+                                  Alisverisi tamamlamak icin hesabiniza giris yapmaniz gerekiyor. ,
+                                  1. Giris Yap
+                                  2. Hesap Olustur
+                                  0. Geri don
+                                  """);
+            int secim = secimYap();
+            switch (secim){
+                case 1:
+                    kullanici = girisYapSatinAlim();
+                    if (kullanici != null && !kullanici.getGuncelSepet().getUrunArrayList().isEmpty()){
+                        System.out.println("Eski sepetinizdekileri satın almak ister misiniz?\n1. Ekle\n2. Hayır");
+                        secim = secimYap();
+                        switch (secim){
+                            case 1:
+                                kullanici.getGuncelSepet().getUrunArrayList().addAll(sepet.getUrunArrayList());
+                                sepet = kullanici.getGuncelSepet();
+                                break;
+                            case 2:
+                                break;
+                        }
+                    }
+                    break;
+                case 2:
+                    kullanici = KullaniciKayitSistemi.kullaniciKaydi();
+                    break;
+                case 0:
+                    System.out.println("Magaza sayfasina yonlendiriliyorsunuz...");
+                    return null;
             }
         }
-        kullanici.getSatinAlimGecmisi().add(sepet);
-        for (Urun urun: sepet.getUrunArrayList()){
-            Urun siradakiUrun = db.findByID(urun.getId());
-            siradakiUrun.setAdet(siradakiUrun.getAdet()-urun.getAdet());
+        sepetiGoruntule(sepet);
+        System.out.println("ALISVERISI ONAYLIYOR MUSUNUZ???");
+        int secim = secimYap();
+        if (secim == 0) {
+            System.out.println("Alisveris iptal, ana menuye donuluyor...");
+            return kullanici;
         }
-        System.out.println("Alisverisiniz gerceklesmistir, kargo bilgileri icin bilgilendirme maili alacaksiniz.  " +
-                                   "Bizi sectiginiz icin tesekkur ederiz!");
+        if (sepet.getToplamFiyat() <= kullanici.getBakiye()) {
+            kullanici.getSatinAlimGecmisi().add(sepet);
+            for (Urun urun : sepet.getUrunArrayList()) {
+                Urun siradakiUrun = db.findByID(urun.getId());
+                siradakiUrun.setAdet(siradakiUrun.getAdet() - urun.getAdet());
+            }
+            System.out.println("Alisverisiniz gerceklesmistir, kargo bilgileri icin bilgilendirme maili alacaksiniz.  " + "Bizi sectiginiz icin tesekkur ederiz!");
+            kullanici.setGuncelSepet(new Sepet());
+            return kullanici;
+        }
+        else {
+            System.out.println("Yeterli bakiyeniz bulunammaktadir");
+            return kullanici;
+        }
+    }
+    
+    private static Kullanici girisYapSatinAlim() {
+        Kullanici kullanici = null;
+        for (int i = 0; i < 3; i++) {
+            
+            kullanici = KullaniciKayitSistemi.girisYap();
+            if (kullanici != null) return kullanici;
+        }
         return kullanici;
     }
     

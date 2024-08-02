@@ -23,6 +23,15 @@ public class Kullanici {
     private Sepet guncelSepet;
     private ArrayList<Sepet> satinAlimGecmisi;
     private ArrayList<Urun> favoriList;
+    private Integer bakiye = 0;
+    
+    public Integer getBakiye() {
+        return bakiye;
+    }
+    
+    public void setBakiye(Integer bakiye) {
+        this.bakiye = bakiye;
+    }
     
     public ArrayList<Urun> getFavoriList() {
         return favoriList;

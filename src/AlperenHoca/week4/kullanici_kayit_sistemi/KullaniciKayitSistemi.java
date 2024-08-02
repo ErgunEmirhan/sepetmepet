@@ -185,7 +185,15 @@ public class KullaniciKayitSistemi {
             return null;
         }
     }
-
+    
+    public static void bakiyeOlustur(Kullanici kullanici){
+        System.out.print("Bakiyenize ne kadar para yüklemek istiyorsunuz: ");
+        int eklenecekBakiye = scanner.nextInt();
+        scanner.nextLine();
+        kullanici.setBakiye(kullanici.getBakiye()+eklenecekBakiye);
+        System.out.println("Yeni bakiyeniz = "+kullanici.getBakiye());
+    }
+    
     private static Kullanici[] kullanicilariGoruntule() {
         Kullanici[] kullaniciArr = KullaniciDB.findAll();
         if(kullaniciArr.length == 0){
@@ -232,7 +240,7 @@ public class KullaniciKayitSistemi {
         }
     }
 
-    private static Kullanici kullaniciKaydi() {
+    public static Kullanici kullaniciKaydi() {
         LocalDate dogumTarihi;
         Kullanici kullanici;
         dogumTarihi = dogumTarihiAl();
